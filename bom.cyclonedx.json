@@ -1,0 +1,75 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:b6d381e1-54ee-482a-82bb-1124cb910e79",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-09-08T00:00:00Z",
+    "component": {
+      "type": "application",
+      "name": "Milo Split Pro",
+      "version": "1.0.0",
+      "description": "Windows Native Local AI Music Stem Separation and Mixer Application",
+      "licenses": [
+        {
+          "license": {
+            "id": "Proprietary"
+          }
+        }
+      ]
+    }
+  },
+  "components": [
+    {
+      "type": "library",
+      "name": "NAudio",
+      "version": "2.2.1",
+      "purl": "pkg:nuget/NAudio@2.2.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "NAudio.Wasapi",
+      "version": "2.2.1",
+      "purl": "pkg:nuget/NAudio.Wasapi@2.2.1",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "library",
+      "name": "CommunityToolkit.Mvvm",
+      "version": "8.4.0",
+      "purl": "pkg:nuget/CommunityToolkit.Mvvm@8.4.0",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    {
+      "type": "framework",
+      "name": "Python Standalone Embeddable Runtime",
+      "version": "3.11.9",
+      "licenses": [
+        {
+          "license": {
+            "id": "PSF-2.0"
+          }
+        }
+      ]
+    }
+  ]
+}

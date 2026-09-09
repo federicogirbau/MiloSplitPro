@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5A452C74-F94D-426A-8823-DFD2AEF61935}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiloSplitPro.Core", "src\MiloSplitPro.Core\MiloSplitPro.Core.csproj", "{2D20F54B-D137-4E6A-8CEB-D6029D65D5A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiloSplitPro.Tests", "src\MiloSplitPro.Tests\MiloSplitPro.Tests.csproj", "{A4028AAB-7A74-4B60-A1A8-4BFF1F3F0145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiloSplitPro.App", "src\MiloSplitPro.App\MiloSplitPro.App.csproj", "{30376D10-D17C-4561-98CA-0BFA2A960561}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D20F54B-D137-4E6A-8CEB-D6029D65D5A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D20F54B-D137-4E6A-8CEB-D6029D65D5A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D20F54B-D137-4E6A-8CEB-D6029D65D5A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D20F54B-D137-4E6A-8CEB-D6029D65D5A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4028AAB-7A74-4B60-A1A8-4BFF1F3F0145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4028AAB-7A74-4B60-A1A8-4BFF1F3F0145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4028AAB-7A74-4B60-A1A8-4BFF1F3F0145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4028AAB-7A74-4B60-A1A8-4BFF1F3F0145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30376D10-D17C-4561-98CA-0BFA2A960561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30376D10-D17C-4561-98CA-0BFA2A960561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30376D10-D17C-4561-98CA-0BFA2A960561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30376D10-D17C-4561-98CA-0BFA2A960561}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D20F54B-D137-4E6A-8CEB-D6029D65D5A1} = {5A452C74-F94D-426A-8823-DFD2AEF61935}
+		{A4028AAB-7A74-4B60-A1A8-4BFF1F3F0145} = {5A452C74-F94D-426A-8823-DFD2AEF61935}
+		{30376D10-D17C-4561-98CA-0BFA2A960561} = {5A452C74-F94D-426A-8823-DFD2AEF61935}
+	EndGlobalSection
+EndGlobal

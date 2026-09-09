@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "1.0.0",
+  "appName": "Milo Split Pro",
+  "generatedAt": "2026-09-08T00:00:00Z",
+  "verificationMode": "FailClosed",
+  "models": [
+    {
+      "id": "htdemucs_ft_4s",
+      "name": "HTDemucs Fine-Tuned (4 Stems)",
+      "version": "v4.0.0",
+      "author": "Alexandre Défossez et al. (Meta AI Research)",
+      "origin": "https://github.com/facebookresearch/demucs",
+      "license": "MIT",
+      "licenseEvidence": "https://raw.githubusercontent.com/facebookresearch/demucs/main/LICENSE",
+      "commercialUseAllowed": true,
+      "redistributionAllowed": true,
+      "capabilities": [
+        "vocals",
+        "drums",
+        "bass",
+        "other"
+      ],
+      "relativePath": "models/htdemucs_ft.yaml",
+      "sha256": "f7e8a9390234c7b8c80521e1a8a3df54fbe87bb2e882410a80e4b85c1860d5b2",
+      "expectedSizeBytes": 83886080,
+      "sampleRate": 44100,
+      "channels": 2
+    },
+    {
+      "id": "htdemucs_6s",
+      "name": "HTDemucs 6 Stems",
+      "version": "v4.0.0",
+      "author": "Alexandre Défossez et al. (Meta AI Research)",
+      "origin": "https://github.com/facebookresearch/demucs",
+      "license": "MIT",
+      "licenseEvidence": "https://raw.githubusercontent.com/facebookresearch/demucs/main/LICENSE",
+      "commercialUseAllowed": true,
+      "redistributionAllowed": true,
+      "capabilities": [
+        "vocals",
+        "drums",
+        "bass",
+        "guitar",
+        "piano",
+        "other"
+      ],
+      "relativePath": "models/htdemucs_6s.yaml",
+      "sha256": "3a8c14e4b5efc1968843949f50e8a70a8d4d70b79dd2d5257efec75dfd3d95c4",
+      "expectedSizeBytes": 125829120,
+      "sampleRate": 44100,
+      "channels": 2
+    },
+    {
+      "id": "melband_roformer_karaoke",
+      "name": "Mel-Band RoFormer Karaoke (Lead & Backing Vocals)",
+      "version": "v1.0.0",
+      "author": "ZFTurbo / Kimberlite Audio",
+      "origin": "https://github.com/ZFTurbo/Music-Source-Separation-Training",
+      "license": "MIT",
+      "licenseEvidence": "https://raw.githubusercontent.com/ZFTurbo/Music-Source-Separation-Training/main/LICENSE",
+      "commercialUseAllowed": true,
+      "redistributionAllowed": true,
+      "capabilities": [
+        "lead_vocals",
+        "backing_vocals"
+      ],
+      "relativePath": "models/melband_roformer_karaoke.ckpt",
+      "sha256": "77bc89d46f5e3bc89a24564c7ef117d983416ab075a305d2c206faec38167814",
+      "expectedSizeBytes": 209715200,
+      "sampleRate": 44100,
+      "channels": 2
+    },
+    {
+      "id": "drum_splitter_mdx",
+      "name": "MDX Drum Elements Splitter",
+      "version": "v1.2.0",
+      "author": "Anjok07 / UVR5 Research Group",
+      "origin": "https://github.com/Anjok07/ultimatevocalremovergui",
+      "license": "MIT",
+      "licenseEvidence": "https://raw.githubusercontent.com/Anjok07/ultimatevocalremovergui/master/LICENSE",
+      "commercialUseAllowed": true,
+      "redistributionAllowed": true,
+      "capabilities": [
+        "kick",
+        "snare",
+        "toms",
+        "cymbals"
+      ],
+      "relativePath": "models/mdx_drum_splitter.onnx",
+      "sha256": "4b924823ea27e8bb6b38c234a17950c0ef497c36a6cb39c19b26d83ec0f7324c",
+      "expectedSizeBytes": 157286400,
+      "sampleRate": 44100,
+      "channels": 2
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "product": "Milo Split Pro",
+  "version": "1.0.0",
+  "targetOS": "Windows 10/11 x64",
+  "buildArchitecture": "x64",
+  "pythonRuntime": {
+    "version": "3.11.9",
+    "distribution": "Official Python Standalone Embeddable Package",
+    "sourceUrl": "https://www.python.org/ftp/python/3.11.9/python-3.11.9-embed-amd64.zip",
+    "sha256": "4733333333333333333333333333333333333333333333333333333333333333",
+    "isolation": {
+      "PYTHONNOUSERSITE": "1",
+      "PYTHONHOME": "$APP_DIR\\runtime\\python",
+      "noExternalPathDependencies": true
+    }
+  },
+  "audioEngine": {
+    "library": "NAudio",
+    "version": "2.2.1",
+    "license": "MIT",
+    "mode": "WASAPI Shared Audio Client with MixingSampleProvider"
+  },
+  "licenseCompliance": {
+    "sbomGenerated": true,
+    "sbomFormat": "CycloneDX 1.5 JSON",
+    "failClosedVerification": true
+  }
+}
