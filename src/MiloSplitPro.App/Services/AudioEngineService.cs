@@ -335,18 +335,33 @@ public class AudioEngineService : IDisposable
                     track.AudioReader.Position = 0;
                 }
 
-                var sampleRate = 44100;
-                var channels = 2;
-                var waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channels);
+                var targetSampleRate = 44100;
+                var targetChannels = 2;
+                var waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(targetSampleRate, targetChannels);
                 var exportMixer = new MixingSampleProvider(waveFormat) { ReadFully = false };
 
                 bool anySolo = _tracks.Any(t => t.IsSolo);
+                var readersToDispose = new List<IDisposable>();
+
                 foreach (var track in _tracks)
                 {
                     var reader = new AudioFileReader(track.FilePath);
+                    readersToDispose.Add(reader);
+
                     var vol = track.IsMuted ? 0.0f : (anySolo ? (track.IsSolo ? track.TargetVolume : 0.0f) : track.TargetVolume);
                     var volProv = new VolumeSampleProvider(reader) { Volume = vol };
-                    exportMixer.AddMixerInput(volProv);
+
+                    ISampleProvider formatted = volProv;
+                    if (formatted.WaveFormat.Channels == 1)
+                    {
+                        formatted = new MonoToStereoSampleProvider(formatted);
+                    }
+                    if (formatted.WaveFormat.SampleRate != targetSampleRate)
+                    {
+                        formatted = new WdlResamplingSampleProvider(formatted, targetSampleRate);
+                    }
+
+                    exportMixer.AddMixerInput(formatted);
                 }
 
                 var meter = new MeteringSampleProvider(exportMixer);
@@ -359,8 +374,13 @@ public class AudioEngineService : IDisposable
                     }
                 };
 
-                // Render offline directo a archivo WAV PCM 16-bit
+                // Render offline directo a archivo WAV PCM 16-bit a 44.1 kHz estéreo
                 WaveFileWriter.CreateWaveFile16(outputWavPath, meter);
+
+                foreach (var r in readersToDispose)
+                {
+                    r.Dispose();
+                }
 
                 return maxPeak;
             }

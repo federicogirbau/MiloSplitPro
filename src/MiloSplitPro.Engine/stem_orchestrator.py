@@ -223,17 +223,48 @@ class StemOrchestrator:
 
         self.emit_progress("SeparatingAudio", 80.0, "Organizando y exportando pistas separadas...", model=model_name, device=device_name)
 
-        # Map Demucs sources
+        # Map and resample Demucs sources back to original sample rate if necessary
         # sources shape: [1, num_sources, 2, samples]
         model_sources_map = {}
+        out_resampler = None
+        if sample_rate != target_sr:
+            try:
+                import torchaudio.transforms as T
+                out_resampler = T.Resample(target_sr, sample_rate)
+            except Exception:
+                out_resampler = None
+
         for idx, src_name in enumerate(model.sources):
-            stem_np = sources[0, idx].cpu().numpy().T # [samples, 2]
-            # Match original length if resampled
+            stem_tensor = sources[0, idx].cpu() # [2, samples]
+            
+            if out_resampler is not None:
+                try:
+                    stem_tensor = out_resampler(stem_tensor)
+                except Exception:
+                    pass
+            elif sample_rate != target_sr:
+                try:
+                    import scipy.signal
+                    import math
+                    gcd = math.gcd(target_sr, sample_rate)
+                    up = sample_rate // gcd
+                    down = target_sr // gcd
+                    raw_np = stem_tensor.numpy().T
+                    raw_resampled = scipy.signal.resample_poly(raw_np, up, down, axis=0).astype(np.float32)
+                    stem_tensor = torch.from_numpy(raw_resampled.T)
+                except Exception:
+                    pass
+
+            stem_np = stem_tensor.numpy().T # [samples, 2]
+
+            # Match exact original length
             if len(stem_np) != len(original_audio):
-                min_l = min(len(stem_np), len(original_audio))
-                adjusted = np.zeros((len(original_audio), stem_np.shape[1]), dtype=np.float32)
-                adjusted[:min_l] = stem_np[:min_l]
-                stem_np = adjusted
+                if len(stem_np) > len(original_audio):
+                    stem_np = stem_np[:len(original_audio)]
+                else:
+                    pad = np.zeros((len(original_audio) - len(stem_np), stem_np.shape[1]), dtype=np.float32)
+                    stem_np = np.vstack([stem_np, pad])
+
             model_sources_map[src_name.lower()] = stem_np
 
         os.makedirs(output_dir, exist_ok=True)
