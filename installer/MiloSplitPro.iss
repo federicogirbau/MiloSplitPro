@@ -1,8 +1,8 @@
 ; Milo Split Pro - Inno Setup Script
 #define MyAppName "Milo Split Pro"
 #define MyAppVersion "1.0.0"
-#define MyAppPublisher "Milo Audio Labs"
-#define MyAppURL "https://github.com/milo-split-pro"
+#define MyAppPublisher "MILOsoft"
+#define MyAppURL "https://github.com/federicogirbau/MiloSplitPro"
 #define MyAppExeName "MiloSplitPro.App.exe"
 
 [Setup]
@@ -13,9 +13,11 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={autopf}\{#MyAppName}
-DisableProgramGroupPage=yes
+DefaultDirName={autopf}\MILOsoft\{#MyAppName}
+DefaultGroupName=MILOsoft
+DisableProgramGroupPage=no
 LicenseFile=..\THIRD_PARTY_NOTICES.txt
+SetupIconFile=..\src\MiloSplitPro.App\Assets\app_icon.ico
 OutputDir=..\dist
 OutputBaseFilename=MiloSplitPro_Setup_v1.0.0_x64
 Compression=lzma2/max
@@ -36,8 +38,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "..\build\publish\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\Assets\app_icon.ico"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\Assets\app_icon.ico"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
