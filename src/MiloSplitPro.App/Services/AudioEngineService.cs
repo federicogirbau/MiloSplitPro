@@ -91,18 +91,35 @@ public class AudioEngineService : IDisposable
         }
     }
 
-    public void LoadStems(IReadOnlyList<SeparatedStemInfo> stems)
+    public void UnloadStems()
     {
         Stop();
 
         lock (_lock)
         {
+            if (_wavePlayer != null)
+            {
+                try { _wavePlayer.Stop(); } catch { }
+                try { _wavePlayer.Dispose(); } catch { }
+                _wavePlayer = null;
+            }
+
             foreach (var track in _tracks)
             {
-                track.Dispose();
+                try { track.Dispose(); } catch { }
             }
             _tracks.Clear();
+            _mixer = null;
+            TotalDuration = TimeSpan.Zero;
+        }
+    }
 
+    public void LoadStems(IReadOnlyList<SeparatedStemInfo> stems)
+    {
+        UnloadStems();
+
+        lock (_lock)
+        {
             if (stems == null || stems.Count == 0) return;
 
             var waveFormat = WaveFormat.CreateIeeeFloatWaveFormat(44100, 2);

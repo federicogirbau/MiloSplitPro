@@ -311,6 +311,12 @@ public partial class MainViewModel : ObservableObject
         CurrentStageText = "Iniciando...";
         StatusMessage = "Preparando modelos y entorno de audio...";
 
+        // Close any active audio file readers to release file locks on destination files
+        _audioService.UnloadStems();
+        HasSeparatedTracks = false;
+        IsPlaying = false;
+        _playbackTimer.Stop();
+
         _cancellationTokenSource = new CancellationTokenSource();
         var progressHandler = new Progress<SeparationProgressEvent>(OnSeparationProgress);
 

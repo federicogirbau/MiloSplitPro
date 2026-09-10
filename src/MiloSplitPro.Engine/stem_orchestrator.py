@@ -82,6 +82,18 @@ def save_audio_stem(file_base_path: str, audio: np.ndarray, sample_rate: int, fm
     """Saves audio array to target format (MP3, WAV, FLAC, OGG). Returns actual file path."""
     os.makedirs(os.path.dirname(file_base_path), exist_ok=True)
     fmt_lower = fmt.lower().strip()
+
+    def safe_write_bytes(path: str, data: bytes):
+        for attempt in range(4):
+            try:
+                with open(path, "wb") as f:
+                    f.write(data)
+                return
+            except PermissionError:
+                if attempt < 3:
+                    time.sleep(0.3)
+                else:
+                    raise
     
     if fmt_lower == "mp3":
         target_path = file_base_path if file_base_path.lower().endswith(".mp3") else f"{file_base_path}.mp3"
@@ -96,8 +108,7 @@ def save_audio_stem(file_base_path: str, audio: np.ndarray, sample_rate: int, fm
             clipped = np.clip(audio, -1.0, 1.0)
             int_data = (clipped * 32767.0).astype(np.int16)
             mp3_data = encoder.encode(int_data.tobytes()) + encoder.flush()
-            with open(target_path, "wb") as f:
-                f.write(mp3_data)
+            safe_write_bytes(target_path, mp3_data)
             return target_path
         except Exception:
             import soundfile as sf
